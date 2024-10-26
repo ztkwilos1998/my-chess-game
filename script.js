@@ -49,7 +49,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         const piece = initialSetup[i];
         if (piece) {
-            square.innerHTML = piece;
+            const pieceElem = document.createElement('div');
+            pieceElem.classList.add('piece');
+            pieceElem.innerHTML = piece;
+            square.appendChild(pieceElem);
         }
 
         chessboard.appendChild(square);
