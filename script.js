@@ -27,6 +27,9 @@ const initialSetup = [
     pieces.rook, pieces.knight, pieces.bishop, pieces.queen, pieces.king, pieces.bishop, pieces.knight, pieces.rook
 ];
 
+let selectedPiece = null;
+let selectedSquare = null;
+
 
 
 
@@ -52,12 +55,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const pieceElem = document.createElement('div');
             pieceElem.classList.add('piece');
             pieceElem.innerHTML = piece;
+            pieceElem.addEventListener('click', () => selectPiece(pieceElem, square, i)); //adds an event listener
             square.appendChild(pieceElem);
         }
 
+        square.addEventListener('click', () => movePiece(square, i)); //add event listener
         chessboard.appendChild(square);
 
      
     }
 
 });
+
+function selectPiece(pieceElem, square, index) {
+
+    selectedPiece = pieceElem;
+    selectedSquare = square;
+    console.log('Selected piece: ${pieceElem.innerHTML} at index ${index}');
+}
+
+function movePiece(square, index) {
+    if (selectedPiece && selectedSquare !== square) {
+        square.innerHTML = '';
+        square.appendChild(selectedPiece);
+        selectedPiece = null;
+        selectedSquare = null;
+        console.log('Moved piece to index ${index}');
+    }
+}
