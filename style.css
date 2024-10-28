@@ -21,3 +21,7 @@
     font-size: 40px;
 }
 
+.selected {
+    border: .05px solid red;
+}
+
